@@ -6,6 +6,9 @@ contains:
 - Perlin Noise
 - Simplex Noise
 
+screenshot:
+![Screen Shot](https://user-images.githubusercontent.com/45020018/142364405-c124ac84-77c3-454b-9bcb-25dad3d2f97b.png)
+
 ## How to use
 
 ### Edit your Package.swift
