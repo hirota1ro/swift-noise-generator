@@ -2,6 +2,10 @@
 
 This library project contains a few noise generators created in Swift.
 
+contains:
+- Perlin Noise
+- Simplex Noise
+
 ## How to use
 
 ### Edit your Package.swift
