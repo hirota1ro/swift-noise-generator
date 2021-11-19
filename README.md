@@ -1,6 +1,6 @@
 # SwiftNoiseGenerator
 
-This library project contains a few noise generators created in Swift.
+This library project contains a few noise generators written in Swift.
 
 contains:
 - Perlin Noise
@@ -11,7 +11,9 @@ screenshot:
 
 ## How to use
 
-### Edit your Package.swift
+### To use from an executable package
+
+Edit `Package.swift` to define the dependencies.
 
 ```
      name: "MyExecutable",
@@ -32,13 +34,13 @@ screenshot:
              dependencies: ["MyExecutable"]),
 ```
 
-### Sample Code
+for example `main.swift`
 
 ```
+import Foundation
 import SwiftNoiseGenerator
 
-let generator = PerlinNoise()
-//let generator = SimplexNoise()
+let generator = PerlinNoise() // or SimplexNoise()
 
 var a: [String] = []
 for j in stride(from: 0, to: 360, by: 8) {
@@ -66,4 +68,36 @@ let svg = """
 let dir = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
 let file = dir.appendingPathComponent("noise.svg")
 try! svg.write(to: file, atomically: true, encoding: .utf8)
+```
+
+### To use from an Xcode project
+
+Xcode → File → Add Packages → input this repository URL.
+
+see also: [Adding Package Dependencies to Your App](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app)
+
+Here is a sample code.
+
+```
+import UIKit
+import SwiftNoiseGenerator
+
+    ...
+
+    func createImage() -> UIImage {
+        return UIGraphicsImageRenderer(size: CGSize(width: 480, height: 360)).image { _ in
+            let generator = PerlinNoise()
+            for j in stride(from: 0, to: 360, by: 8) {
+                for i in stride(from: 0, to: 480, by: 8) {
+                    let x = CGFloat(i - 240) / 100
+                    let y = CGFloat(j - 180) / 100
+                    let brightness = generator.normalized(x, y, 0)
+                    let color = UIColor(white: brightness, alpha: 1)
+                    color.setFill()
+                    let path = UIBezierPath(rect: CGRect(x: CGFloat(i), y: CGFloat(j), width: 8, height: 8))
+                    path.fill()
+                }
+            }
+        }
+    }
 ```
