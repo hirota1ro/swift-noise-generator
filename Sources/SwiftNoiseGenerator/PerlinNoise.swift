@@ -6,6 +6,10 @@ public struct PerlinNoise: NoiseGenerator {
 
     public init() {}
 
+    public func noise(_ x: Double, _ y: Double, _ z: Double) -> Double {
+        return (perlinNoise(x, y, z) + 1) / 2
+    }
+
     /// perlin noise (raw)
     ///
     /// - Parameters:
@@ -13,7 +17,7 @@ public struct PerlinNoise: NoiseGenerator {
     ///     - y: The *y* component of the vector.
     ///     - z: The *z* component of the vector.
     /// - Returns: noise value (-1.0 ≦ noise ≦ +1.0)
-    public func noise(_ x: Double, _ y: Double, _ z: Double) -> Double {
+    func perlinNoise(_ x: Double, _ y: Double, _ z: Double) -> Double {
         let xi: Int = Int(floor(x)) & 255
         let yi: Int = Int(floor(y)) & 255
         let zi: Int = Int(floor(z)) & 255

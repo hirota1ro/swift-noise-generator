@@ -41,6 +41,10 @@ public struct SimplexNoise: NoiseGenerator {
     let F: Double = 1.0/3.0
     let G: Double = 1.0/6.0
 
+    public func noise(_ x: Double, _ y: Double, _ z: Double) -> Double {
+        return (simplexNoise(x, y, z) + 1) / 2
+    }
+
     /// simplex noise (raw)
     ///
     /// - Parameters:
@@ -48,7 +52,7 @@ public struct SimplexNoise: NoiseGenerator {
     ///     - y: The *y* component of the vector.
     ///     - z: The *z* component of the vector.
     /// - Returns: noise value (-1.0 ≦ noise ≦ +1.0)
-    public func noise(_ x: Double, _ y: Double, _ z: Double) -> Double {
+    func simplexNoise(_ x: Double, _ y: Double, _ z: Double) -> Double {
         // Very nice and simple skew factor for 3D
         // let s: Double = (x + y + z) * F
         // Skew the input space to determine which simplex cell we're in

@@ -48,7 +48,7 @@ for j in stride(from: 0, to: 360, by: 8) {
         let x = Double(i - 240) / 100
         let y = Double(j - 180) / 100
 
-        let noise = generator.normalized(x, y, 0) // 0〜1
+        let noise = generator.noise(x, y, 0) // 0〜1
         let b = Int(noise * 255) // 0x00〜0xFF
         let rgb = (b << 16) | (b << 8) | (b) // 0x000000〜0xFFFFFF
         let hex = String(format: "%06x", rgb)
@@ -91,7 +91,7 @@ import SwiftNoiseGenerator
                 for i in stride(from: 0, to: 480, by: 8) {
                     let x = CGFloat(i - 240) / 100
                     let y = CGFloat(j - 180) / 100
-                    let brightness = generator.normalized(x, y, 0)
+                    let brightness = generator.noise(x, y, 0)
                     let color = UIColor(white: brightness, alpha: 1)
                     color.setFill()
                     let path = UIBezierPath(rect: CGRect(x: CGFloat(i), y: CGFloat(j), width: 8, height: 8))
