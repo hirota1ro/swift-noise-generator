@@ -3,11 +3,10 @@
 This library project contains a few noise generators written in Swift.
 
 contains:
-- Perlin Noise
-- Simplex Noise
-
-screenshot:
-![Screen Shot](https://user-images.githubusercontent.com/45020018/142364405-c124ac84-77c3-454b-9bcb-25dad3d2f97b.png)
+- Perlin Noise ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/64f82398-5d67-4119-8050-157205bf9141)
+- Simplex Noise  ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/7eecdb6e-153b-47c6-9346-210cd6fec11a)
+- Fractal Noise ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/e21e772d-4116-4da1-a462-391baa60193b)
+- Cyclic Noise  ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/906dbe41-84f7-4173-b3ba-11dd7985e2fa)
 
 ## How to use
 
