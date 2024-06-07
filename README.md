@@ -7,6 +7,7 @@ contains:
 - Simplex Noise  ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/7eecdb6e-153b-47c6-9346-210cd6fec11a)
 - Fractal Noise ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/e21e772d-4116-4da1-a462-391baa60193b)
 - Cyclic Noise  ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/906dbe41-84f7-4173-b3ba-11dd7985e2fa)
+- Cellular Noise  ![Screen Shot](https://github.com/hirota1ro/swift-noise-generator/assets/45020018/dd5a796f-ce92-47af-81d3-c1c5013330ff)
 
 ## How to use
 
