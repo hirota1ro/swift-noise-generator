@@ -12,6 +12,7 @@ final class CreateImageTests: XCTestCase {
         createImage(fileURL: dir + "simplexNoise.png", gen: SimplexNoise())
         createImage(fileURL: dir + "fractalNoise.png", gen: FractalNoise(original: PerlinNoise()))
         createImage(fileURL: dir + "cyclicNoise.png", gen: CyclicNoise())
+        createImage(fileURL: dir + "cellularNoise.png", gen: CellularNoise())
     }
 
     private func createImage(fileURL: URL, gen: NoiseGenerator) {
