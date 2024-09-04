@@ -17,17 +17,24 @@ final class CreateImageTests: XCTestCase {
 
     private func createImage(fileURL: URL, gen: NoiseGenerator) {
         let size = CGSize(width: 128, height: 128)
-        let image = NSImage(size: size)
-        image.lockFocus()
+        guard let ctx = CGContext(data: nil,
+                                  width: Int(ceil(size.width)),
+                                  height: Int(ceil(size.height)),
+                                  bitsPerComponent: 8,
+                                  bytesPerRow: 4 * Int(ceil(size.width)),
+                                  space: CGColorSpaceCreateDeviceRGB(),
+                                  bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else {
+            fatalError("CGContext.init()")
+        }
         for y in stride(from: 0, to: size.height, by: 1) {
             for x in stride(from: 0, to: size.width, by: 1) {
                 let brightness = gen.noise(x * 0.05, y * 0.05, 0)
-                NSColor(white: brightness, alpha: 1).setFill()
-                CGRect(x: x, y: y, width: 1, height: 1).fill()
+                ctx.setFillColor(CGColor(gray: brightness, alpha: 1))
+                ctx.fill(CGRect(x: x, y: y, width: 1, height: 1))
             }
         }
-        image.unlockFocus()
-        guard let data = image.pngData else { fatalError() }
+        guard let image = ctx.makeImage() else { fatalError("CGContext.makeImage()") }
+        let data = image.pngData
         do {
             try data.write(to: fileURL, options: .atomic)
             print("succeeded to write \(fileURL.path)")
@@ -37,19 +44,11 @@ final class CreateImageTests: XCTestCase {
     }
 }
 
-extension NSImage {
-    var pngData: Data? {
-        guard let tiffRepresentation = self.tiffRepresentation else {
-            print("no tiffRep")
-            return nil
-        }
-        guard let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) else {
-            print("no bitmapImageRep")
-            return nil
-        }
-        guard let data = bitmapImage.representation(using: .png, properties: [:]) else {
-            print("no data")
-            return nil
+extension CGImage {
+    var pngData: Data {
+        let bitmapRep = NSBitmapImageRep(cgImage: self)
+        guard let data = bitmapRep.representation(using: .png, properties: [:]) else {
+            fatalError("no data")
         }
         return data
     }
